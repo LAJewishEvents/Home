@@ -1,0 +1,1752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>LA Jewish Events — Curated Jewish life in Los Angeles</title>
+  <meta name="description" content="LA’s curated front door to Jewish life: events, community, weekly highlights. Join WhatsApp, browse the live calendar, and read the newsletter." />
+  <meta name="theme-color" content="#0a0a10" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#06060a;
+      --bg1:#0a0a12;
+      --bg2:#0f1020;
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.56);
+      --line: rgba(255,255,255,.12);
+
+      --chip: rgba(255,255,255,.06);
+      --chip2: rgba(255,255,255,.08);
+
+      --shadow: 0 28px 90px rgba(0,0,0,.62);
+      --shadow2: 0 16px 48px rgba(0,0,0,.55);
+      --shadow3: 0 10px 30px rgba(0,0,0,.45);
+
+      --r14: 14px;
+      --r18: 18px;
+      --r24: 24px;
+      --r32: 32px;
+      --r40: 40px;
+
+      --max: 1200px;
+
+      --a1:#b9c7ff;
+      --a2:#ffb3d6;
+      --a3:#ffe9a7;
+      --acc: linear-gradient(135deg,var(--a1),var(--a2) 55%,var(--a3));
+      --accSoft: linear-gradient(135deg, rgba(185,199,255,.25), rgba(255,179,214,.18) 55%, rgba(255,233,167,.14));
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(900px 700px at 10% 0%, rgba(185,199,255,.18), transparent 55%),
+        radial-gradient(860px 660px at 92% 10%, rgba(255,179,214,.14), transparent 58%),
+        radial-gradient(980px 740px at 55% 110%, rgba(255,233,167,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg2), var(--bg1) 55%, var(--bg0));
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* Ambient layers */
+    .aurora{
+      position:fixed; inset:-30vh -25vw;
+      z-index:0; pointer-events:none;
+      filter: blur(18px) saturate(125%);
+      opacity:.72;
+      background:
+        radial-gradient(680px 520px at 18% 16%, rgba(185,199,255,.22), transparent 62%),
+        radial-gradient(720px 540px at 84% 18%, rgba(255,179,214,.18), transparent 64%),
+        radial-gradient(760px 560px at 54% 86%, rgba(255,233,167,.12), transparent 66%),
+        conic-gradient(from 180deg at 50% 50%, rgba(255,179,214,.06), rgba(185,199,255,.05), rgba(255,233,167,.05), rgba(255,179,214,.06));
+      animation: drift 16s ease-in-out infinite;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0) scale(1); }
+      50%{ transform: translate3d(-2.2%,1.6%,0) scale(1.03); }
+      100%{ transform: translate3d(0,0,0) scale(1); }
+    }
+    .grain{
+      position:fixed; inset:0;
+      pointer-events:none; z-index:1;
+      opacity:.10;
+      mix-blend-mode: overlay;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="260" height="260" filter="url(%23n)" opacity=".18"/></svg>');
+    }
+
+    .wrap{ position:relative; z-index:2; max-width:var(--max); margin:0 auto; padding: 14px 16px 80px; }
+
+    /* Sticky nav */
+    .dock{ position:sticky; top: 10px; z-index:50; padding: 10px 0 12px; }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap: 12px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow3);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      min-width: 0;
+    }
+    .mark{
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      padding: 4px;
+      background: linear-gradient(180deg, rgba(255,255,255,.48), rgba(255,255,255,.10));
+      box-shadow: 0 16px 44px rgba(0,0,0,.55);
+      flex:0 0 auto;
+    }
+    .mark .inner{
+      width:100%; height:100%;
+      border-radius:999px;
+      background:#fff;
+      overflow:hidden;
+    }
+    .mark img{
+      width:100%; height:100%;
+      object-fit:cover;
+      filter: grayscale(100%) contrast(120%);
+    }
+    .btxt{min-width:0; display:flex; flex-direction:column; gap: 2px;}
+    .btxt .name{
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .btxt .tag{
+      font-size: 12px;
+      color: var(--muted2);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+
+    .tabs{ display:flex; align-items:center; gap: 8px; flex-wrap:wrap; justify-content:flex-end; }
+    .tab{
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .02em;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .tab:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); }
+    .tab.primary{
+      border: 0;
+      background: var(--acc);
+      color:#0a0a10;
+      box-shadow: 0 18px 40px rgba(0,0,0,.40);
+    }
+    .tab.primary:hover{ transform: translateY(-1px) scale(1.01); }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      margin-top: 8px;
+      border-radius: var(--r40);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(185,199,255,.18), transparent 60%),
+        radial-gradient(900px 650px at 95% 20%, rgba(255,179,214,.14), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.78)),
+        radial-gradient(900px 560px at 50% 0%, rgba(0,0,0,.10), rgba(0,0,0,.65));
+      z-index:0;
+    }
+
+    /* LA skyline silhouette (CSS mask-ish via SVG) */
+    .skyline{
+      position:absolute; left:-10%; right:-10%;
+      bottom:-2px;
+      height: 34%;
+      z-index:0;
+      opacity:.28;
+      filter: blur(.0px) contrast(115%);
+    }
+    .skyline svg{ width:100%; height:100%; display:block; }
+    .skyline .glow{
+      filter: drop-shadow(0 0 14px rgba(185,199,255,.30)) drop-shadow(0 0 28px rgba(255,179,214,.18));
+      opacity:.92;
+    }
+
+    .heroInner{
+      position:relative; z-index:1;
+      padding: 20px 18px 18px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 16px;
+      align-items:stretch;
+      min-height: calc(100svh - 128px); /* keeps “middle text” on mobile fold */
+    }
+
+    .pill{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .02em;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--acc);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.06);
+      flex:0 0 auto;
+    }
+
+    .heroLeft{ display:flex; flex-direction:column; gap: 12px; }
+    .h1{
+      font-family: Fraunces, serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 4px 0 0;
+      font-size: clamp(34px, 6.8vw, 64px);
+      line-height: 1.02;
+      text-wrap: balance;
+    }
+    .sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(14px, 2.9vw, 18px);
+      line-height: 1.45;
+      max-width: 62ch;
+    }
+
+    /* Keep hero copy from getting too tall on small screens */
+    @media (max-width: 520px){
+      .sub{
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    .ctaRow{
+      display:flex; flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      margin-top: 6px;
+    }
+    .btn{
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: .02em;
+      box-shadow: 0 14px 34px rgba(0,0,0,.40);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      min-width: 150px;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); }
+    .btn.primary{
+      border: 0;
+      background: var(--acc);
+      color:#0a0a10;
+      box-shadow: 0 18px 44px rgba(0,0,0,.45);
+    }
+    .btn.primary:hover{ transform: translateY(-1px) scale(1.01); }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .stat{
+      border-radius: var(--r24);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 12px 12px;
+      box-shadow: var(--shadow3);
+      overflow:hidden;
+    }
+    .stat .k{
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+    .stat .v{
+      color: var(--muted2);
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .heroRight{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-self:stretch;
+    }
+    .card{
+      border-radius: var(--r32);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .cardHeader{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+    }
+    .cardHeader .title{
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: rgba(255,255,255,.80);
+    }
+    .cardHeader .chip{
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .quickLinks{
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .q{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+      text-decoration:none;
+      color: var(--text);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .q:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+    .q .left{ display:flex; flex-direction:column; gap: 3px; min-width:0;}
+    .q .label{ font-weight: 900; font-size: 14px; letter-spacing: -.01em; }
+    .q .desc{ color: var(--muted2); font-size: 12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .q .go{
+      flex:0 0 auto;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .logoCenter{
+      display:flex; align-items:center; justify-content:center;
+      padding: 16px 0 0;
+    }
+    .logoRing{
+      width: 96px; height: 96px;
+      border-radius: 999px;
+      padding: 6px;
+      background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.12));
+      box-shadow: 0 24px 68px rgba(0,0,0,.55);
+    }
+    .logoRing .inner{
+      width:100%; height:100%;
+      border-radius:999px;
+      background:#fff;
+      overflow:hidden;
+    }
+    .logoRing img{
+      width:100%; height:100%;
+      object-fit:cover;
+      filter: grayscale(100%) contrast(120%);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 16px;
+      border-radius: var(--r40);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .sectionTop{
+      display:flex; align-items:center; justify-content:space-between; gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .sectionTop .h{
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(255,255,255,.80);
+    }
+    .sectionTop .right{
+      display:flex; gap: 8px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .badge{
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 8px 10px;
+      border-radius: 999px;
+      text-decoration:none;
+    }
+    .sectionBody{ padding: 16px; }
+
+    /* Calendar embed */
+    .calendarWrap{
+      border-radius: var(--r32);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      box-shadow: var(--shadow3);
+    }
+    .calendarWrap iframe{
+      width: 100%;
+      height: 720px;
+      border:0;
+      display:block;
+      background: #fff;
+    }
+    @media (max-width: 720px){
+      .calendarWrap iframe{ height: 640px; }
+    }
+    @media (max-width: 520px){
+      .calendarWrap iframe{ height: 560px; }
+    }
+
+    /* Social photos */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    @media (max-width: 920px){
+      .grid3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 560px){
+      .grid3{ grid-template-columns: 1fr; }
+    }
+    .photo{
+      border-radius: var(--r32);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      box-shadow: var(--shadow3);
+      position:relative;
+      min-height: 220px;
+    }
+    .photo img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      filter: contrast(108%) saturate(105%);
+    }
+    .photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.58));
+      pointer-events:none;
+    }
+    .photo .cap{
+      position:absolute; left:14px; right:14px; bottom:12px;
+      z-index:2;
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 10px;
+    }
+    .photo .cap .t{
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: -.01em;
+    }
+    .photo .cap .s{
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+      margin-top: 2px;
+    }
+
+    /* Current events list */
+    .events{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .events{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 560px){
+      .events{ grid-template-columns: 1fr; }
+    }
+    .event{
+      border-radius: var(--r32);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      box-shadow: var(--shadow3);
+      padding: 14px;
+    }
+    .event .meta{
+      display:flex; gap: 8px; flex-wrap:wrap; align-items:center;
+      margin-bottom: 10px;
+    }
+    .pill2{
+      font-size: 12px;
+      font-weight: 900;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.84);
+      letter-spacing: .02em;
+    }
+    .event .title{
+      font-family: Fraunces, serif;
+      font-size: 18px;
+      line-height: 1.15;
+      margin: 0 0 8px;
+    }
+    .event .desc{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 0 0 12px;
+    }
+    .event a{
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .event a:hover{ background: rgba(255,255,255,.07); }
+
+    /* About */
+    .aboutGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .aboutGrid{ grid-template-columns: 1fr; }
+    }
+    .aboutCopy p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .callout{
+      border-radius: var(--r32);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      box-shadow: var(--shadow3);
+      padding: 14px;
+    }
+    .callout .k{
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: .02em;
+      margin-bottom: 8px;
+    }
+    .callout ul{
+      margin: 0; padding: 0 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
+    }
+
+    /* Support */
+    .support{
+      text-align:center;
+      padding: 18px 16px 20px;
+    }
+    .support h2{
+      font-family: Fraunces, serif;
+      margin: 0 0 10px;
+      font-size: clamp(22px, 4.5vw, 34px);
+      letter-spacing: -0.01em;
+    }
+    .support p{
+      margin: 0 auto 14px;
+      color: var(--muted);
+      max-width: 68ch;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.50);
+      font-size: 12px;
+      text-align:center;
+      padding: 14px 0 0;
+    }
+
+    /* Responsive hero layout */
+    @media (max-width: 980px){
+      .heroInner{ grid-template-columns: 1fr; min-height: unset; }
+      .heroRight{ order: 3; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .aurora{ animation:none; }
+      .tab, .btn, .q{ transition:none; }
+      html{ scroll-behavior:auto; }
+    }
+  
+
+/* --- Calendar calendar polish (native feel) --- */
+.calendarWrap{
+  position: relative;
+  border-radius: 28px;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 70px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+
+/* Subtle ambient glow behind the widget */
+.calendarWrap::before{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background:
+    radial-gradient(520px 260px at 18% 18%, rgba(255,104,104,.18), transparent 62%),
+    radial-gradient(520px 260px at 82% 18%, rgba(155,140,255,.16), transparent 62%),
+    radial-gradient(520px 320px at 55% 95%, rgba(110,200,255,.10), transparent 60%);
+  filter: blur(18px);
+  opacity: .85;
+  pointer-events:none;
+  z-index: 0;
+}
+
+/* Fine grain for depth */
+.calendarWrap::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  opacity:.06;
+  mix-blend-mode: overlay;
+  pointer-events:none;
+  z-index: 0;
+}
+
+/* Ensure widget sits above glow */
+.calendarWrap > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Tighten spacing around the widget (more native) */
+.calendarWrap{ margin-top: 8px; }
+.sectionTitle#calendar{ padding-bottom: 8px; }
+#featuredGrid{ margin-top: 10px; }
+
+@media (max-width: 480px){
+  .calendarWrap{ padding: 12px; border-radius: 24px; }
+}
+
+
+/* --- Motion: counters + ticker --- */
+.ticker{
+  position: relative;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  box-shadow: 0 12px 35px rgba(0,0,0,.35);
+  overflow: hidden;
+}
+.tickerViewport{ overflow:hidden; border-radius: 999px; }
+.tickerTrack{
+  display:flex;
+  align-items:center;
+  gap: 22px;
+  padding: 10px 18px;
+  white-space: nowrap;
+  will-change: transform;
+  animation: tickerMarquee 26s linear infinite;
+}
+.tickerItem{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.78);
+}
+.tickerItem .dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.25));
+  box-shadow: 0 0 0 4px rgba(255,255,255,.07), 0 0 18px rgba(179, 134, 255, .22);
+  position: relative;
+}
+.tickerItem .dot::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:999px;
+  background: radial-gradient(circle, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+.tickerFade{
+  position:absolute;
+  top:0; bottom:0;
+  width: 70px;
+  z-index: 2;
+  pointer-events:none;
+}
+.tickerFade.left{ left:0; background: linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,0)); }
+.tickerFade.right{ right:0; background: linear-gradient(-90deg, rgba(0,0,0,.75), rgba(0,0,0,0)); }
+@keyframes tickerMarquee{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+@keyframes dotPulse{
+  0%,100%{ transform: scale(.9); opacity:.55; }
+  50%{ transform: scale(1.15); opacity:1; }
+}
+
+/* count-up emphasis */
+.countup{
+  font-variant-numeric: tabular-nums;
+  display:inline-block;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .tickerTrack{ animation: none; }
+  .tickerItem .dot::after{ animation: none; }
+}
+
+
+      /* Google Calendar embed */
+      .gcalFrame{width:100%;height:520px;border:0;border-radius:28px;background:#0b0c10;box-shadow:0 18px 60px rgba(0,0,0,.45);position:relative}
+      @media (max-width: 520px){.gcalFrame{height:520px}}
+      .calendarWrap{position:relative}
+      .calFade{pointer-events:none;position:absolute;left:16px;right:16px;bottom:16px;height:70px;border-radius:20px;background:linear-gradient(to bottom, rgba(10,10,14,0), rgba(10,10,14,.92));opacity:.95}
+
+      /* Map section */
+      .mapShell{margin-top:18px;padding:18px;border-radius:28px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px)}
+      .mapTop{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+      .mapPills{display:flex;gap:10px;flex-wrap:wrap}
+      .pill{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:rgba(255,255,255,.86);padding:10px 12px;border-radius:999px;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:.2s transform,.2s background}
+      .pill:active{transform:scale(.98)}
+      .pill.active{background:linear-gradient(90deg, rgba(134,239,172,.22), rgba(96,165,250,.20), rgba(232,121,249,.18));border-color:rgba(255,255,255,.22)}
+      .mapMeta{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.72);font-size:13px}
+      .metaDot{width:9px;height:9px;border-radius:999px;background:rgba(134,239,172,.9);box-shadow:0 0 16px rgba(134,239,172,.55)}
+      .mapFrame{position:relative;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#0b0c10}
+      #mapIframe{width:100%;height:420px;border:0;display:block;filter:saturate(1.05) contrast(1.05)}
+      .gmap{width:100%;height:420px;display:none}
+      .mapOverlayNote{position:absolute;left:16px;right:16px;bottom:16px;padding:14px 14px;border-radius:18px;background:rgba(10,10,14,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px)}
+      .noteTitle{font-weight:900;color:rgba(255,255,255,.92);margin-bottom:6px}
+      .noteText{color:rgba(255,255,255,.72);font-size:13px;line-height:1.35}
+      .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;opacity:.95}
+      .noteBtn{display:inline-flex;margin-top:10px;align-items:center;justify-content:center;padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:rgba(255,255,255,.90);font-weight:800;text-decoration:none}
+      .mapList{margin-top:14px;display:grid;gap:10px}
+      .mapItem{display:flex;gap:12px;align-items:flex-start;padding:12px 12px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+      .mapItem .t{font-weight:900;color:rgba(255,255,255,.92);line-height:1.2}
+      .mapItem .m{color:rgba(255,255,255,.68);font-size:13px;line-height:1.35;margin-top:2px}
+      .mapItem .a{margin-left:auto;white-space:nowrap}
+      .mapItem a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:800;border:1px solid rgba(255,255,255,.14);padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.06)}
+
+/* Google Calendar Month View */
+.gcalFrame{
+  width:100%;
+  border:0;
+  border-radius:28px;
+  overflow:hidden;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  height: 640px;
+}
+@media (max-width: 520px){
+  .gcalFrame{ height: 560px; border-radius:24px; }
+}
+
+.embedWrap{
+  width:100%;
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+}
+
+/* Month view embed sizing */
+.monthWrap{height:740px}
+.monthWrap iframe{width:100%;height:100%;border:0;border-radius:18px}
+@media (max-width: 720px){
+  .monthWrap{height:720px}
+}
+
+</style>
+
+<style id="calendar-premium-patch">
+.section { padding: 28px 16px; max-width: 1120px; margin: 0 auto; }
+.section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom: 14px; }
+.section-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+.kicker { letter-spacing: .22em; font-weight: 700; font-size: 12px; color: rgba(255,255,255,.62); }
+.h2 { margin: 6px 0 6px; font-size: clamp(22px, 3.2vw, 34px); line-height: 1.1; }
+.muted { margin: 0; color: rgba(255,255,255,.70); max-width: 58ch; }
+
+.calendar-shell { margin-top: 12px; }
+.calendar-frame{
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 420px at 20% 0%, rgba(168,85,247,.26), rgba(0,0,0,0) 60%),
+    radial-gradient(1000px 420px at 80% 10%, rgba(56,189,248,.18), rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 24px 90px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+.calendar-frame::before{
+  content:"";
+  position:absolute; inset:-2px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, rgba(236,72,153,.35), rgba(168,85,247,.25), rgba(59,130,246,.22));
+  filter: blur(16px);
+  opacity:.45;
+  pointer-events:none;
+  z-index:0;
+}
+.calendar-iframe{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: min(520px, 70vh);
+  border: 0;
+  background: white;
+}
+.calendar-fade{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height: 110px;
+  z-index:2;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(11,12,20,0), rgba(11,12,20,.72), rgba(11,12,20,1));
+}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:10px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight: 700;
+  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+.btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.22); }
+.btn:active{ transform: translateY(0px); }
+.btn-primary{
+  color: #0b0c14;
+  border-color: rgba(255,255,255,.2);
+  background: linear-gradient(90deg, #f59e0b, #ec4899, #8b5cf6);
+}
+.btn-ghost{ background: rgba(0,0,0,.10); }
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.72);
+  font-weight: 600;
+  font-size: 13px;
+}
+.calendar-foot{
+  margin-top: 12px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 10px; flex-wrap: wrap;
+}
+
+@media (max-width: 520px){
+  .section { padding: 22px 14px; }
+  .section-head { align-items:flex-start; flex-direction: column; }
+  .section-actions { width:100%; justify-content:flex-start; }
+  .calendar-iframe{ height: 480px; }
+  .calendar-fade{ height: 92px; }
+}
+</style>
+
+
+<style id="scroll-margin-patch">
+  :root { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 96px; }
+</style>
+
+
+  <!-- Elfsight Event Calendar | LAJ Calendar widget -->
+  <script src="https://elfsightcdn.com/platform.js" async></script>
+</head>
+
+<body>
+  <div class="aurora"></div>
+  <div class="grain"></div>
+
+  <div class="wrap">
+    <!-- NAV -->
+    <div class="dock" role="banner">
+      <nav class="nav" aria-label="Primary">
+        <div class="brand" aria-label="LA Jewish Events">
+          <div class="mark" aria-hidden="true">
+            <div class="inner">
+              <!-- expects logo.png in your repo -->
+              <img src="logo.png" alt="" />
+            </div>
+          </div>
+          <div class="btxt">
+            <div class="name">LA Jewish Events</div>
+            <div class="tag">Events • Community • Weekly highlights</div>
+          </div>
+        </div>
+
+        <div class="tabs" aria-label="Site sections">
+          <a class="tab" href="#calendar">Calendar</a>
+          <a class="tab" href="#map">Map</a>
+          <a class="tab" href="https://la-jewish-events-newsletter.beehiiv.com/" target="_blank" rel="noopener">Newsletter</a>
+          <a class="tab" href="#photos">Social</a>
+          <a class="tab" href="#about">About</a>
+          <a class="tab primary" href="https://chat.whatsapp.com/EurtTb3Gg5JLWLqVzxsWPY" target="_blank" rel="noopener">Join WhatsApp</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="heroInner">
+        <div class="heroLeft">
+          <div class="pill"><span class="dot" aria-hidden="true"></span> LA’s curated front door to Jewish life</div>
+
+          <h1 class="h1">Tonight in Jewish LA.</h1>
+
+          <p class="sub">
+            One hub for <strong>events</strong>, <strong>community</strong>, and <strong>weekly highlights</strong>. 
+            Tap <em>Tonight</em> or the calendar to see what’s actually worth leaving the couch for.
+          </p>
+
+          <div class="ctaRow" role="group" aria-label="Primary actions">
+            <a class="btn primary" href="https://chat.whatsapp.com/EurtTb3Gg5JLWLqVzxsWPY" target="_blank" rel="noopener">Join the WhatsApp Network</a>
+            <a class="btn" href="#calendar">Browse Live Calendar</a>
+            <a class="btn" href="https://la-jewish-events-newsletter.beehiiv.com/" target="_blank" rel="noopener">Read Newsletter</a>
+          </div>
+
+
+          <div class="ticker" aria-label="Live highlights">
+            <div class="tickerFade left" aria-hidden="true"></div>
+            <div class="tickerFade right" aria-hidden="true"></div>
+            <div class="tickerViewport">
+              <div class="tickerTrack" role="presentation">
+                <span class="tickerItem"><span class="dot"></span>Tonight: mixers</span>
+                <span class="tickerItem">Shabbat dinners</span>
+                <span class="tickerItem">Purim parties</span>
+                <span class="tickerItem">Concerts</span>
+                <span class="tickerItem">Volunteering</span>
+                <span class="tickerItem">Talks & film</span>
+                <span class="tickerItem">Rooftops</span>
+                <span class="tickerItem">New this week</span>
+                <span class="tickerItem">Always free to browse</span>
+                <span class="tickerItem">Citywide • multi-neighborhood</span>
+
+                <span class="tickerItem spacer" aria-hidden="true"></span>
+
+                <span class="tickerItem"><span class="dot"></span>Tonight: mixers</span>
+                <span class="tickerItem">Shabbat dinners</span>
+                <span class="tickerItem">Purim parties</span>
+                <span class="tickerItem">Concerts</span>
+                <span class="tickerItem">Volunteering</span>
+                <span class="tickerItem">Talks & film</span>
+                <span class="tickerItem">Rooftops</span>
+                <span class="tickerItem">New this week</span>
+                <span class="tickerItem">Always free to browse</span>
+                <span class="tickerItem">Citywide • multi-neighborhood</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="stats" aria-label="Highlights">
+            <div class="stat">
+              <div class="k"><span class="countup" data-target="3000" data-suffix="+">0+</span></div>
+              <div class="v">WhatsApp members across LA</div>
+            </div>
+            <div class="stat">
+              <div class="k">Weekly</div>
+              <div class="v">Curated highlights + “best of” drops</div>
+            </div>
+            <div class="stat">
+              <div class="k">Citywide</div>
+              <div class="v">Multi-neighborhood reach</div>
+            </div>
+            <div class="stat">
+              <div class="k">Est. 2022</div>
+              <div class="v">Community-built, always evolving</div>
+            </div>
+          </div>
+
+          <div class="logoCenter" aria-label="Logo">
+            <div class="logoRing">
+              <div class="inner">
+                <img src="logo.png" alt="LA Jewish Events logo" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="heroRight" aria-label="Quick access">
+          <div class="card">
+            <div class="cardHeader">
+              <div class="title">Quick Access</div>
+              <div class="chip">Live links</div>
+            </div>
+            <div class="quickLinks">
+              <a class="q" href="#calendar">
+                <div class="left">
+                  <div class="label">Live Calendar</div>
+                  <div class="desc">Browse what’s happening across LA</div>
+                </div>
+                <div class="go">Open</div>
+              </a>
+              <a class="q" href="https://la-jewish-events-newsletter.beehiiv.com/" target="_blank" rel="noopener">
+                <div class="left">
+                  <div class="label">Newsletter</div>
+                  <div class="desc">Weekly highlights & community pulse</div>
+                </div>
+                <div class="go">Read</div>
+              </a>
+              <a class="q" href="https://chat.whatsapp.com/EurtTb3Gg5JLWLqVzxsWPY" target="_blank" rel="noopener">
+                <div class="left">
+                  <div class="label">WhatsApp Network</div>
+                  <div class="desc">The real-time feed (fast + social)</div>
+                </div>
+                <div class="go">Join</div>
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <div class="title">Tonight’s vibe</div>
+              <div class="chip">Tap to explore</div>
+            </div>
+            <div class="quickLinks" style="grid-template-columns: 1fr 1fr;">
+              <a class="q" href="#events" style="padding:12px;">
+                <div class="left">
+                  <div class="label">Mixers</div>
+                  <div class="desc">Meet new people</div>
+                </div>
+              </a>
+              <a class="q" href="#events" style="padding:12px;">
+                <div class="left">
+                  <div class="label">Shabbat</div>
+                  <div class="desc">Dinners & rooftops</div>
+                </div>
+              </a>
+              <a class="q" href="#events" style="padding:12px;">
+                <div class="left">
+                  <div class="label">Parties</div>
+                  <div class="desc">Purim • nightlife</div>
+                </div>
+              </a>
+              <a class="q" href="#events" style="padding:12px;">
+                <div class="left">
+                  <div class="label">Culture</div>
+                  <div class="desc">Talks & shows</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- skyline -->
+        <div class="skyline" aria-hidden="true">
+          <svg viewBox="0 0 1200 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="white" stop-opacity=".85"/>
+                <stop offset="1" stop-color="white" stop-opacity=".18"/>
+              </linearGradient>
+            </defs>
+            <path class="glow" d="M0,220 L0,190 L30,190 L30,170 L55,170 L55,200 L78,200 L78,160 L98,160 L98,200
+              L120,200 L120,135 L140,135 L140,200 L162,200 L162,165 L190,165 L190,200 L208,200 L208,150 L230,150
+              L230,200 L250,200 L250,120 L275,120 L275,200 L300,200 L300,155 L322,155 L322,200 L348,200 L348,140
+              L372,140 L372,200 L402,200 L402,110 L426,110 L426,200 L450,200 L450,160 L480,160 L480,200 L510,200
+              L510,90 L540,90 L540,200 L570,200 L570,150 L595,150 L595,200 L620,200 L620,135 L648,135 L648,200
+              L680,200 L680,105 L710,105 L710,200 L740,200 L740,155 L770,155 L770,200 L800,200 L800,130 L824,130
+              L824,200 L850,200 L850,110 L875,110 L875,200 L900,200 L900,160 L925,160 L925,200 L950,200 L950,125
+              L980,125 L980,200 L1010,200 L1010,150 L1035,150 L1035,200 L1060,200 L1060,135 L1086,135 L1086,200
+              L1110,200 L1110,170 L1135,170 L1135,200 L1160,200 L1160,180 L1180,180 L1180,200 L1200,200 L1200,260 L0,260 Z"
+              fill="url(#g)"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- CALENDAR -->
+<section class="section" id="calendar">
+  <div class="container">
+    <div class="sectionHeader">
+      <div>
+        <div class="kicker"><span class="dot"></span> Live Calendar</div>
+        <h2 class="sectionTitle">Your live feed — fast, clean, always current.</h2>
+        <p class="sectionSub">Powered by our Elfsight calendar widget. Tap an event to see details & RSVP links.</p>
+      </div>
+      <div class="sectionActions">
+        <a class="pillBtn" href="https://calendar.google.com/calendar/embed?src=lajevents.inbox%40gmail.com" target="_blank" rel="noopener">Open in new tab</a>
+        <a class="pillBtn" href="#newsletter">Get weekly highlights</a>
+      </div>
+    </div>
+
+    <div class="card cardTight">
+      <div class="embedWrap" aria-label="LA Jewish Events live calendar">
+        <div class="elfsight-app-cfab7fc8-bb34-45e0-a094-e14966c3df35" data-elfsight-app-lazy></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+    <!-- MAP (optional: pins from Google Calendar locations) -->
+    <section class="section" id="map" aria-label="Event Map">
+      <div class="sectionTop">
+        <div class="h">Event Map</div>
+        <div class="right">
+          <a class="badge" href="https://www.google.com/maps/search/?api=1&query=Jewish%20events%20Los%20Angeles" target="_blank" rel="noopener">Open Google Maps</a>
+          <a class="badge" href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="sub">
+        See where things are happening across LA. (Pins auto-populate when a Google API key is added.)
+      </div>
+
+      <div class="mapShell">
+        <div class="mapTop">
+          <div class="mapPills" role="tablist" aria-label="Map filters">
+            <button class="pill active" data-map-filter="all" type="button">All</button>
+            <button class="pill" data-map-filter="tonight" type="button">Tonight</button>
+            <button class="pill" data-map-filter="week" type="button">This week</button>
+          </div>
+          <div class="mapMeta">
+            <span class="metaDot"></span>
+            <span id="mapMetaText">Loading…</span>
+          </div>
+        </div>
+
+        <div class="mapFrame">
+          <!-- Fallback iframe (no API key) -->
+          <iframe
+            id="mapIframe"
+            title="Los Angeles map"
+            src="https://www.google.com/maps?q=Los+Angeles,+CA&z=11&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+
+          <!-- Interactive map (requires Google Maps JS key) -->
+          <div id="gmap" class="gmap" aria-label="Interactive event map"></div>
+
+          <div class="mapOverlayNote" id="mapOverlayNote">
+            <div class="noteTitle">Enable pins from the calendar</div>
+            <div class="noteText">
+              To automatically place event locations on the map, add your Google API key in the script near
+              <span class="mono">MAPS_API_KEY</span>. The site will then pull upcoming events and pin their locations.
+            </div>
+            <a class="noteBtn" href="#calendar">View calendar list</a>
+          </div>
+        </div>
+
+        <div class="mapList" id="mapList" aria-label="Upcoming events list"></div>
+      </div>
+    </section>
+
+<!-- SOCIAL PHOTOS (uses your 3 uploaded images) -->
+    <section class="section" id="photos" aria-label="Social photos">
+      <div class="sectionTop">
+        <div class="h">Social proof</div>
+        <div class="right">
+          <span class="badge">Real people • real nights</span>
+        </div>
+      </div>
+      <div class="sectionBody">
+        <div class="grid3">
+          <!--
+            IMPORTANT:
+            Upload your three images into the SAME GitHub repo as this index.html, named exactly:
+              social-1.jpg
+              social-2.jpg
+              social-3.jpg
+            (or .png — just match the filenames below)
+          -->
+          <figure class="photo">
+            <img src="social-1.jpg" alt="Young people at a Jewish social event in Los Angeles" loading="lazy">
+            <div class="cap">
+              <div>
+                <div class="t">Nightlife + community</div>
+                <div class="s">Meetups • parties • mixers</div>
+              </div>
+            </div>
+          </figure>
+
+          <figure class="photo">
+            <img src="social-2.jpg" alt="Friends at a Jewish community gathering in Los Angeles" loading="lazy">
+            <div class="cap">
+              <div>
+                <div class="t">Built in LA</div>
+                <div class="s">Across neighborhoods</div>
+              </div>
+            </div>
+          </figure>
+
+          <figure class="photo">
+            <img src="social-3.jpg" alt="Group photo at a Jewish event in Los Angeles" loading="lazy">
+            <div class="cap">
+              <div>
+                <div class="t">People-first</div>
+                <div class="s">Connection over scrolling</div>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRENT EVENTS (sample cards) -->
+    <section class="section" id="events">
+  <div class="container">
+    <div class="sectionHeader">
+      <div>
+        <div class="kicker"><span class="dot"></span> Full Month View</div>
+        <h2 class="sectionTitle">Plan ahead — the full LAJE month.</h2>
+        <p class="sectionSub">Month view of the same calendar, optimized for quick scanning.</p>
+      </div>
+      <div class="sectionActions">
+        <a class="pillBtn" href="https://calendar.google.com/calendar/embed?src=lajevents.inbox%40gmail.com&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1&hl=en" target="_blank" rel="noopener">Open month in Google</a>
+        <a class="pillBtn" href="#calendar">Back to live feed</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="embedWrap monthWrap">
+        <iframe title="LA Jewish Events month view" src="https://calendar.google.com/calendar/embed?src=lajevents.inbox%40gmail.com&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1&hl=en" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+    <section class="section" id="about" aria-label="About LA Jewish Events">
+      <div class="sectionTop">
+        <div class="h">About</div>
+        <div class="right">
+          <a class="badge" href="https://la-jewish-events-newsletter.beehiiv.com/" target="_blank" rel="noopener">Newsletter</a>
+          <a class="badge" href="https://chat.whatsapp.com/EurtTb3Gg5JLWLqVzxsWPY" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="sectionBody">
+        <div class="aboutGrid">
+          <div class="aboutCopy">
+            <p>
+              <strong>LA Jewish Events</strong> is a community-built hub that makes Jewish life in Los Angeles easier to discover.
+              We aggregate events across organizations, neighborhoods, and platforms—then publish them in a way that’s simple to scan
+              and genuinely fun to explore.
+            </p>
+            <p>
+              The WhatsApp network is the real-time feed. The newsletter is the weekly “best of.” The live calendar is the source of truth—always free to view.
+            </p>
+            <p>
+              Want something added? Partnering on a big event? Email us through the newsletter contact page, or DM inside WhatsApp.
+            </p>
+          </div>
+
+          <div class="callout">
+            <div class="k">What you get here</div>
+            <ul>
+              <li>One place to browse what’s happening across LA</li>
+              <li>Quick links to RSVP (Eventbrite, Partiful, ShulCloud, etc.)</li>
+              <li>Weekly highlights to stay plugged in</li>
+              <li>Community energy—built for meeting people</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section class="section" id="support" aria-label="Support our work">
+      <div class="sectionTop">
+        <div class="h">Support</div>
+        <div class="right">
+          <a class="badge" href="#top">Back to top</a>
+        </div>
+      </div>
+      <div class="support">
+        <h2>Help us keep the hub alive.</h2>
+        <p>
+          If LA Jewish Events has helped you find community, discover a great night out, or meet new people—supporting this work keeps it sustainable
+          and helps us improve the platform.
+        </p>
+        <!-- Replace # with your donation/support link when ready -->
+        <a class="btn primary" href="#" onclick="alert('Add your donation/support link here.'); return false;">Support our work</a>
+        <div class="footer">© <span id="year"></span> LA Jewish Events • Built for connection in Los Angeles</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Tiny progressive enhancement
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+<script>
+(function(){
+  const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el){
+    const target = parseInt(el.getAttribute('data-target') || '0', 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    if (!target || prefersReduce){ el.textContent = target.toLocaleString() + suffix; return; }
+
+    const duration = 1100; // ms
+    const start = performance.now();
+    const from = 0;
+
+    function step(now){
+      const t = Math.min(1, (now - start)/duration);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(from + (target - from) * eased);
+      el.textContent = val.toLocaleString() + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countEls = Array.from(document.querySelectorAll('.countup'));
+  if (!countEls.length) return;
+
+  const io = ('IntersectionObserver' in window) ? new IntersectionObserver((entries, obs)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        animateCount(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.35}) : null;
+
+  countEls.forEach(el=>{
+    // set initial
+    el.textContent = '0' + (el.getAttribute('data-suffix') || '');
+    if (io) io.observe(el);
+    else animateCount(el);
+  });
+})();
+
+
+// ============================
+// MAP: Pins from Google Calendar locations (optional)
+// ============================
+const GOOGLE_CALENDAR_ID = "lajevents.inbox@gmail.com";
+// Keys are stored in the browser (localStorage) so you don't have to commit them to GitHub.
+// Visit your site with ?admin=1 to set/update keys.
+const CALENDAR_API_KEY = (localStorage.getItem("LAJ_CAL_API_KEY") || "").trim();
+const MAPS_API_KEY = (localStorage.getItem("LAJ_MAPS_API_KEY") || "").trim(); 
+
+const mapEls = {
+  iframe: document.getElementById("mapIframe"),
+  gmap: document.getElementById("gmap"),
+  note: document.getElementById("mapOverlayNote"),
+  meta: document.getElementById("mapMetaText"),
+  list: document.getElementById("mapList"),
+  pills: Array.from(document.querySelectorAll("[data-map-filter]")),
+};
+
+let __gmap = null;
+let __markers = [];
+let __events = [];
+let __activeFilter = "all";
+
+function setMapMeta(text){ if(mapEls.meta) mapEls.meta.textContent = text; }
+
+function isSameDay(a,b){
+  return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+}
+function inNext7Days(d){
+  const now = new Date();
+  const end = new Date(now.getTime() + 7*24*60*60*1000);
+  return d >= new Date(now.getFullYear(), now.getMonth(), now.getDate()) && d <= end;
+}
+
+function parseEventStart(ev){
+  const s = ev.start?.dateTime || ev.start?.date;
+  return s ? new Date(s) : null;
+}
+
+function filterEvents(list){
+  const now = new Date();
+  if(__activeFilter === "tonight"){
+    return list.filter(ev => {
+      const d = parseEventStart(ev);
+      return d && isSameDay(d, now);
+    });
+  }
+  if(__activeFilter === "week"){
+    return list.filter(ev => {
+      const d = parseEventStart(ev);
+      return d && inNext7Days(d);
+    });
+  }
+  return list;
+}
+
+function formatWhen(d){
+  try{
+    const opt = { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" };
+    return d.toLocaleString(undefined, opt);
+  }catch(e){ return ""; }
+}
+
+function renderMapList(events){
+  if(!mapEls.list) return;
+  const items = events.slice(0, 12).map(ev => {
+    const d = parseEventStart(ev);
+    const when = d ? formatWhen(d) : "";
+    const loc = (ev.location || "").trim();
+    const title = (ev.summary || "Event").trim();
+    const mapsLink = loc ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc)}` : (ev.htmlLink || "#");
+    return `
+      <div class="mapItem">
+        <div>
+          <div class="t">${escapeHtml(title)}</div>
+          <div class="m">${escapeHtml(when)}${loc ? ` • ${escapeHtml(loc)}` : ""}</div>
+        </div>
+        <div class="a"><a href="${mapsLink}" target="_blank" rel="noopener">Map</a></div>
+      </div>`;
+  }).join("");
+  mapEls.list.innerHTML = items || `<div class="sub" style="margin-top:6px">No events with locations found in this filter.</div>`;
+}
+
+// simple html escape
+function escapeHtml(str){
+  return String(str||"").replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+}
+
+async function fetchCalendarEvents(){
+  const timeMin = new Date().toISOString();
+  const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GOOGLE_CALENDAR_ID)}/events?key=${encodeURIComponent(CALENDAR_API_KEY)}&singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(timeMin)}&maxResults=50`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error("Calendar fetch failed");
+  const data = await res.json();
+  return Array.isArray(data.items) ? data.items : [];
+}
+
+function loadGoogleMaps(){
+  return new Promise((resolve, reject) => {
+    if(window.google && window.google.maps) return resolve();
+    const s = document.createElement("script");
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(MAPS_API_KEY)}`;
+    s.async = true;
+    s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error("Maps script failed"));
+    document.head.appendChild(s);
+  });
+}
+
+function getCache(){
+  try{ return JSON.parse(localStorage.getItem("laj_map_geocode_cache_v1") || "{}"); }catch(e){ return {}; }
+}
+function setCache(obj){
+  try{ localStorage.setItem("laj_map_geocode_cache_v1", JSON.stringify(obj)); }catch(e){}
+}
+
+function clearMarkers(){
+  __markers.forEach(m => m.setMap(null));
+  __markers = [];
+}
+
+async function geocodeMany(events){
+  const geocoder = new google.maps.Geocoder();
+  const cache = getCache();
+  const withLoc = events.filter(ev => (ev.location||"").trim().length>3);
+
+  // limit geocodes per load to keep quotas safe
+  const MAX_GEOCODES = 18;
+  const targets = withLoc.slice(0, MAX_GEOCODES);
+
+  const results = [];
+  for(const ev of targets){
+    const loc = (ev.location||"").trim();
+    if(cache[loc]){
+      results.push({ ev, pos: cache[loc] });
+      continue;
+    }
+    // eslint-disable-next-line no-await-in-loop
+    const pos = await new Promise((resolve) => {
+      geocoder.geocode({ address: loc }, (r, status) => {
+        if(status === "OK" && r && r[0]){
+          const p = r[0].geometry.location;
+          resolve({ lat: p.lat(), lng: p.lng() });
+        } else {
+          resolve(null);
+        }
+      });
+    });
+    if(pos){
+      cache[loc] = pos;
+      results.push({ ev, pos });
+      setCache(cache);
+    }
+  }
+  return results;
+}
+
+function initMap(){
+  __gmap = new google.maps.Map(mapEls.gmap, {
+    center: { lat: 34.0522, lng: -118.2437 },
+    zoom: 11,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    clickableIcons: false,
+    styles: [
+      { elementType:"geometry", stylers:[{ color:"#0b0c10" }]},
+      { elementType:"labels.text.fill", stylers:[{ color:"#e9e7ff" }]},
+      { elementType:"labels.text.stroke", stylers:[{ color:"#0b0c10" }]},
+      { featureType:"road", elementType:"geometry", stylers:[{ color:"#2b2d3a" }]},
+      { featureType:"road", elementType:"geometry.stroke", stylers:[{ color:"#1a1b23" }]},
+      { featureType:"poi", elementType:"labels.text.fill", stylers:[{ color:"#b9b6ff" }]},
+      { featureType:"water", elementType:"geometry", stylers:[{ color:"#0f2030" }]},
+    ]
+  });
+}
+
+async function plotEvents(){
+  if(!__gmap) return;
+  clearMarkers();
+
+  const filtered = filterEvents(__events);
+  renderMapList(filtered);
+
+  setMapMeta(`Showing ${Math.min(filtered.length, 50)} upcoming events`);
+
+  const geocoded = await geocodeMany(filtered);
+  if(!geocoded.length){
+    setMapMeta("No geocoded locations yet — add locations to events (e.g., venue + neighborhood).");
+    return;
+  }
+
+  const bounds = new google.maps.LatLngBounds();
+  const info = new google.maps.InfoWindow();
+
+  geocoded.forEach(({ ev, pos }) => {
+    const title = (ev.summary || "Event").trim();
+    const loc = (ev.location || "").trim();
+    const d = parseEventStart(ev);
+    const when = d ? formatWhen(d) : "";
+    const marker = new google.maps.Marker({
+      position: pos,
+      map: __gmap,
+      title,
+    });
+    marker.addListener("click", () => {
+      const html = `
+        <div style="font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;max-width:240px">
+          <div style="font-weight:800;margin-bottom:4px">${escapeHtml(title)}</div>
+          <div style="opacity:.85;font-size:12px">${escapeHtml(when)}</div>
+          <div style="opacity:.85;font-size:12px;margin-top:2px">${escapeHtml(loc)}</div>
+          ${ev.htmlLink ? `<div style="margin-top:8px"><a href="${ev.htmlLink}" target="_blank" rel="noopener">Open event</a></div>` : ""}
+        </div>`;
+      info.setContent(html);
+      info.open({ anchor: marker, map: __gmap });
+    });
+    __markers.push(marker);
+    bounds.extend(pos);
+  });
+
+  __gmap.fitBounds(bounds, 80);
+}
+
+async function enableInteractiveMap(){
+  // show interactive map, hide iframe + note
+  mapEls.iframe.style.display = "none";
+  mapEls.gmap.style.display = "block";
+  mapEls.note.style.display = "none";
+
+  await loadGoogleMaps();
+  initMap();
+
+  try{
+    setMapMeta("Pulling events…");
+    __events = await fetchCalendarEvents();
+    setMapMeta(`Loaded ${__events.length} events`);
+    await plotEvents();
+  }catch(e){
+    console.warn(e);
+    setMapMeta("Couldn’t load events — make sure the calendar is public and the API key is valid.");
+    renderMapList([]);
+  }
+}
+
+function wireMapFilters(){
+  if(!mapEls.pills.length) return;
+  mapEls.pills.forEach(btn => {
+    btn.addEventListener("click", async () => {
+      mapEls.pills.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      __activeFilter = btn.dataset.mapFilter || "all";
+      if(__gmap) await plotEvents();
+      else renderMapList(filterEvents(__events));
+    });
+  });
+}
+
+wireMapFilters();
+
+// Turn on interactive map only if key present
+if(MAPS_API_KEY && MAPS_API_KEY.trim().length > 10){
+  enableInteractiveMap();
+} else {
+  setMapMeta("Map is in preview mode (add API key for live pins).");
+
+// Admin panel (only when ?admin=1)
+(function(){
+  try{
+    const params = new URLSearchParams(window.location.search);
+    if(!params.has('admin')) return;
+    const panel = document.getElementById('adminKeyPanel');
+    const cal = document.getElementById('adminCalKey');
+    const maps = document.getElementById('adminMapsKey');
+    const status = document.getElementById('adminKeyStatus');
+    if(!panel || !cal || !maps) return;
+
+    panel.style.display = 'block';
+    cal.value = localStorage.getItem('LAJ_CAL_API_KEY') || '';
+    maps.value = localStorage.getItem('LAJ_MAPS_API_KEY') || '';
+
+    function setStatus(t){ if(status) status.textContent = t; }
+
+    document.getElementById('adminKeyClose')?.addEventListener('click', ()=>{ panel.style.display='none'; });
+    document.getElementById('adminKeyClear')?.addEventListener('click', ()=>{
+      localStorage.removeItem('LAJ_CAL_API_KEY');
+      localStorage.removeItem('LAJ_MAPS_API_KEY');
+      cal.value=''; maps.value='';
+      setStatus('Cleared. Refresh the page.');
+    });
+    document.getElementById('adminKeySave')?.addEventListener('click', ()=>{
+      localStorage.setItem('LAJ_CAL_API_KEY', (cal.value||'').trim());
+      localStorage.setItem('LAJ_MAPS_API_KEY', (maps.value||'').trim());
+      setStatus('Saved. Refreshing…');
+      setTimeout(()=>{ window.location.href = window.location.pathname; }, 450);
+    });
+
+    setStatus('Tip: Once it works, remove ?admin=1 from the URL.');
+  }catch(e){}
+})();
+
+  // Still populate list from iframe mode? (no Calendar API without key) — keep minimal.
+  renderMapList([]);
+}
+
+</script>
+
+
+
+  <!-- Admin: API Key Panel (only shows when ?admin=1) -->
+  <div id="adminKeyPanel" style="display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:99999;max-width:720px;margin:0 auto;">
+    <div style="backdrop-filter: blur(14px);-webkit-backdrop-filter: blur(14px);background:rgba(18,18,28,.78);border:1px solid rgba(255,255,255,.12);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.45);padding:14px 14px 12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">Admin • API Keys</div>
+          <div style="font-size:12px;opacity:.82;margin-top:2px">Stored locally in this browser only. Don't paste keys into public chats.</div>
+        </div>
+        <button id="adminKeyClose" style="appearance:none;border:0;background:rgba(255,255,255,.1);color:#fff;border-radius:12px;padding:8px 10px;font-weight:700;">Close</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px;">
+        <label style="display:block;font-size:12px;opacity:.86">Google Calendar API key (Calendar API)</label>
+        <input id="adminCalKey" type="password" autocomplete="off" placeholder="Paste Calendar API key" style="width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#fff;outline:none;"/>
+
+        <label style="display:block;font-size:12px;opacity:.86;margin-top:4px">Google Maps API key (Maps JavaScript + Geocoding)</label>
+        <input id="adminMapsKey" type="password" autocomplete="off" placeholder="Paste Maps API key" style="width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#fff;outline:none;"/>
+
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px;">
+          <button id="adminKeyClear" style="appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.18);color:#fff;border-radius:14px;padding:10px 12px;font-weight:800;">Clear</button>
+          <button id="adminKeySave" style="appearance:none;border:0;background:linear-gradient(90deg, rgba(182,129,255,1), rgba(255,142,142,1));color:#101015;border-radius:14px;padding:10px 14px;font-weight:900;">Save</button>
+        </div>
+        <div id="adminKeyStatus" style="font-size:12px;opacity:.85;margin-top:2px"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
